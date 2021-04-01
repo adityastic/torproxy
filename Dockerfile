@@ -48,6 +48,7 @@ RUN apk --no-cache --no-progress upgrade && \
     echo 'TransPort 0.0.0.0:9040' >>/etc/tor/torrc && \
     echo 'User tor' >>/etc/tor/torrc && \
     echo 'VirtualAddrNetworkIPv4 10.192.0.0/10' >>/etc/tor/torrc && \
+    echo 'HTTPTunnelPort 9080' >>/etc/tor/torrc && \
     mkdir -p /etc/tor/run && \
     chown -Rh tor. /var/lib/tor /etc/tor/run && \
     chmod 0750 /etc/tor/run && \
@@ -55,7 +56,7 @@ RUN apk --no-cache --no-progress upgrade && \
 
 COPY torproxy.sh /usr/bin/
 
-EXPOSE 8118 9050 9051
+EXPOSE 8118 9050 9051 9080
 
 HEALTHCHECK --interval=60s --timeout=15s --start-period=20s \
             CMD curl -sx localhost:8118 'https://check.torproject.org/' | \
