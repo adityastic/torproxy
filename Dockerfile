@@ -64,4 +64,4 @@ HEALTHCHECK --interval=60s --timeout=15s --start-period=20s \
 
 VOLUME ["/etc/tor", "/var/lib/tor"]
 
-ENTRYPOINT ["/sbin/tini", "--", "/usr/bin/torproxy.sh"]
+ENTRYPOINT ["/usr/bin/torproxy.sh"]
